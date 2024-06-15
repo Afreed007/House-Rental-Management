@@ -64,6 +64,9 @@ header("location:index.php?page=home");
 	    background-repeat: no-repeat;
 	    background-size: cover;*/
 	}
+	#login-left .login-img{
+		align-self: normal;
+	}
 	#login-right .card{
 		margin: auto;
 		z-index: 1
@@ -94,11 +97,12 @@ div#login-right::before {
 
   <main id="main" class=" bg-light">
   		<div id="login-left" class="bg-dark">
+			<img class="login-img" src="home3.jpg">
   		</div>
 
   		<div id="login-right" class="bg-light">
   			<div class="w-100">
-			<h4 class="text-white text-center"><b style="color:black">House rental management system</b></h4>
+			<h4 class="text-white text-center"><b style="color:black; font-family: 'Times New Roman', Times, serif; ">House rental management system</b></h4>
 			<br>
 			<br>
   			<div class="card col-md-8">
@@ -126,6 +130,8 @@ div#login-right::before {
 
 
 </body>
+<!-- JavaScript code to handle the form submission and sends an AJAX request to the server so 
+ that it check the login credentials and redirect the page to index.php if login,passwaord r ture-->
 <script>
 	$('#login-form').submit(function(e){
 		e.preventDefault()
