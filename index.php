@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-	
+<html lang="en"> 
+
+<!-- session_start is typically used to manage user sessions and store user relates data across multiple pages -->	
+
 <?php session_start(); ?>
 <head>
   <meta charset="utf-8">
@@ -8,7 +10,7 @@
 
   <title><?php echo isset($_SESSION['system']['name']) ? $_SESSION['system']['name'] : '' ?></title>
  	
-
+<!--user authentication.... to ensure that user is logged in and if not redirect to login.php -->
 <?php
   if(!isset($_SESSION['login_id']))
     header('location:login.php');
@@ -66,26 +68,26 @@
     <div class="toast-body text-white">
     </div>
   </div>
-  
+
+<!--page routing..... $page parameter passed through the URL were the value of page is 'home' to redirect home.php -->
   <main id="view-panel" >
       <?php $page = isset($_GET['page']) ? $_GET['page'] :'home'; ?>
   	<?php include $page.'.php' ?>
-  	
-
   </main>
 
   <div id="preloader"></div>
   <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
+<!--confirmation modal...   used to display confirmation message before deleting any entity(such as house,tenants,payments etc) -->
 <div class="modal fade" id="confirm_modal" role='dialog'>
     <div class="modal-dialog modal-md" role="document">
       <div class="modal-content">
         <div class="modal-header">
         <h5 class="modal-title">Confirmation</h5>
       </div>
-      <div class="modal-body">
+      <!-- <div class="modal-body">
         <div id="delete_content"></div>
-      </div>
+      </div> -->
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" id='confirm' onclick="">Continue</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -93,6 +95,8 @@
       </div>
     </div>
   </div>
+
+
   <div class="modal fade" id="uni_modal" role='dialog'>
     <div class="modal-dialog modal-md" role="document">
       <div class="modal-content">
@@ -117,9 +121,10 @@
     </div>
   </div>
 </body>
+
 <script>
 	 window.start_load = function(){
-    $('body').prepend('<di id="preloader2"></di>')
+    $('body').prepend('<div id="preloader2"></div>')
   }
   window.end_load = function(){
     $('#preloader2').fadeOut('fast', function() {
@@ -174,7 +179,12 @@
         }
     })
 }
-window._conf = function($msg='',$func='',$params = []){
+
+// javascript code for confirmation modal.....  'onclick' event handling for continue and cancel button  
+window._conf = function($msg='',$func='',$params = [])
+{   
+//select id 'confirm'which is inside the id 'confirm_modal'.
+//The value of the onclick attribute is constructed by concatenating the $func with the $params, joined by commas and wrapped in parentheses.
      $('#confirm_modal #confirm').attr('onclick',$func+"("+$params.join(',')+")")
      $('#confirm_modal .modal-body').html($msg)
      $('#confirm_modal').modal('show')

@@ -32,6 +32,7 @@ header("location:index.php?page=home");
 ?>
 
 </head>
+
 <style>
 	body{
 		width: 100%;
@@ -97,7 +98,7 @@ div#login-right::before {
 
   <main id="main" class=" bg-light">
   		<div id="login-left" class="bg-dark">
-			<img class="login-img" src="home3.jpg">
+			<img class="login-img" src="login.jpg">
   		</div>
 
   		<div id="login-right" class="bg-light">
